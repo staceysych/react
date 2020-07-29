@@ -1,9 +1,6 @@
-class App {
-    run = (name = 'Stacey') => {
-        console.log(`Hello, ${name}`);
-        console.log([1,2[3,4]].flat());
-    }
-}
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const app = new App();
-app.run();
+const App = () => <p>Hello, world!</p>;
+
+ReactDOM.render(<App />, document.getElementById('app'));
