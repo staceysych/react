@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const AppHeader = ({ toDo, done }) => (
   <div className="app-header d-flex">
@@ -14,5 +15,15 @@ const AppHeader = ({ toDo, done }) => (
     </h2>
   </div>
 );
+
+AppHeader.propTypes = {
+  toDo: PropTypes.number,
+  done: PropTypes.number,
+};
+
+AppHeader.defaultProps = {
+  toDo: 0,
+  done: 0,
+};
 
 export default AppHeader;
