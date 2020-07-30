@@ -1,3 +1,5 @@
-.red-text {
-    color: red;
-}
+@import '../components/app-header/app-header.scss';
+@import '../components/app/todo-app.scss';
+@import '../components/search-panel/search-panel.scss';
+@import '../components/todo-list-item/todo-list-item.scss';
+@import '../components/todo-list/todo-list.scss';
