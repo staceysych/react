@@ -2,18 +2,45 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class TodoListItem extends Component {
-  render() {
-    const { label, important = false } = this.props;
-    const style = {
-      color: important ? 'steelblue' : 'black',
-      fontWeight: important ? 'bold' : 'normal',
+  constructor() {
+    super();
+    this.state = {
+      done: false,
+      important: false,
     };
+  }
+
+  onLabelClick = () => {
+    this.setState((state) => ({
+      done: !state.done,
+    }));
+  }
+
+  onMarkImportantClick = () => {
+    this.setState((state) => ({
+      important: !state.important,
+    }));
+  }
+
+  render() {
+    const { label } = this.props;
+    const { done, important } = this.state;
+
+    let listClassName = 'todo-list-item';
+
+    if (done) {
+      listClassName += ' done';
+    }
+
+    if (important) {
+      listClassName += ' important';
+    }
 
     return (
-      <span className="todo-list-item">
+      <span className={listClassName}>
         <span
           className="todo-list-item-label"
-          style={style}
+          onClick={this.onLabelClick}
         >
           {label}
         </span>
@@ -21,6 +48,7 @@ export default class TodoListItem extends Component {
         <button
           type="button"
           className="btn btn-outline-success btn-sm float-right"
+          onClick={this.onMarkImportantClick}
         >
           <i className="fa fa-exclamation" />
         </button>
@@ -37,10 +65,5 @@ export default class TodoListItem extends Component {
 }
 
 TodoListItem.propTypes = {
-  label: PropTypes.string,
-  important: PropTypes.bool,
-};
-TodoListItem.defaultProps = {
-  label: true,
-  important: false,
+  label: PropTypes.string.isRequired,
 };

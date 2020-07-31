@@ -17,13 +17,8 @@ const AppHeader = ({ toDo, done }) => (
 );
 
 AppHeader.propTypes = {
-  toDo: PropTypes.number,
-  done: PropTypes.number,
-};
-
-AppHeader.defaultProps = {
-  toDo: 0,
-  done: 0,
+  toDo: PropTypes.number.isRequired,
+  done: PropTypes.number.isRequired,
 };
 
 export default AppHeader;

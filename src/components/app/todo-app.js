@@ -20,7 +20,7 @@ const App = () => {
         <ItemStatusFilter />
       </div>
 
-      <TodoList todos={todoData} />
+      <TodoList toDos={todoData} />
     </div>
   );
 };
