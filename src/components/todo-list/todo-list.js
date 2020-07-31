@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 
 import TodoListItem from '../todo-list-item/todo-list-item';
 
-const TodoList = ({ toDos }) => {
+const TodoList = ({ toDos, onDeleted }) => {
   const elements = toDos.map((item) => {
     const { id, ...itemsProps } = item;
     return (
       <li key={id} className="list-group-item">
-        <TodoListItem {...itemsProps} />
+        <TodoListItem
+          {...itemsProps}
+          onDeleted={() => onDeleted(id)}
+        />
       </li>
     );
   });
@@ -21,6 +24,7 @@ const TodoList = ({ toDos }) => {
 
 TodoList.propTypes = {
   toDos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onDeleted: PropTypes.func.isRequired,
 };
 
 export default TodoList;
