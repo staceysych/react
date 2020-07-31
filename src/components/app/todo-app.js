@@ -12,12 +12,19 @@ export default class App extends Component {
     this.id = 100;
     this.state = {
       todoData: [
-        { label: 'Drink tea', important: false, id: 1 },
-        { label: 'Build Awesome Apps', important: true, id: 2 },
-        { label: 'Buy milk', important: false, id: 3 },
+        this.createTodoItem('Drink tea'),
+        this.createTodoItem('Build Awesome Apps'),
+        this.createTodoItem('Buy milk'),
       ],
     };
   }
+
+  createTodoItem = (label) => ({
+    label,
+    important: false,
+    done: false,
+    id: this.id++,
+  })
 
   deleteItem = (id) => {
     this.setState((state) => {
@@ -31,11 +38,7 @@ export default class App extends Component {
   }
 
   addItem = (text) => {
-    const newItem = {
-      label: text,
-      important: false,
-      id: this.id + 1,
-    };
+    const newItem = this.createTodoItem(text);
 
     this.setState(({ todoData }) => {
       const arrayCopy = [...todoData];
@@ -47,11 +50,40 @@ export default class App extends Component {
     });
   }
 
+  onToggleImportant = (id) => {
+    this.setState(({ todoData }) => {
+      const arrayCopy = [...todoData];
+      const index = arrayCopy.findIndex((el) => el.id === id);
+      const currentObj = arrayCopy[index];
+      currentObj.important = !currentObj.important;
+
+      return {
+        important: currentObj.important,
+      };
+    });
+  };
+
+  onToggleDone = (id) => {
+    this.setState(({ todoData }) => {
+      const arrayCopy = [...todoData];
+      const index = arrayCopy.findIndex((el) => el.id === id);
+      const currentObj = arrayCopy[index];
+      currentObj.done = !currentObj.done;
+
+      return {
+        done: currentObj.done,
+      };
+    });
+  };
+
   render() {
     const { todoData } = this.state;
+    const doneCount = todoData
+      .filter((el) => el.done).length;
+    const todoCount = todoData.length - doneCount;
     return (
       <div className="todo-app">
-        <AppHeader toDo={1} done={3} />
+        <AppHeader toDo={todoCount} done={doneCount} />
         <div className="top-panel d-flex">
           <SearchPanel />
           <ItemStatusFilter />
@@ -60,8 +92,10 @@ export default class App extends Component {
         <TodoList
           toDos={todoData}
           onDeleted={this.deleteItem}
+          onToggleImportant={this.onToggleImportant}
+          onToggleDone={this.onToggleDone}
         />
-        <ItemAddForm 
+        <ItemAddForm
           addItem={this.addItem}
         />
       </div>

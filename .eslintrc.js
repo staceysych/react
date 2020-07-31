@@ -25,6 +25,7 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/prefer-stateless-function': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'no-plusplus': 'off',
   },
   parser: 'babel-eslint',
 };
