@@ -2,18 +2,45 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class ItemAddForm extends Component {
-  render() {
+  constructor() {
+    super();
+    this.state = {
+      inputText: '',
+    };
+  }
+
+  onLabelChange = ({ target }) => {
+    this.setState({
+      inputText: target.value,
+    });
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
     const { addItem } = this.props;
+    const { inputText } = this.state;
+    addItem(inputText);
+  }
+
+  render() {
     return (
-      <div className="item-add-form">
+      <form
+        className="item-add-form d-flex"
+        onSubmit={this.onSubmit}
+      >
+        <input
+          type="text"
+          placeholder="add things to do"
+          className="form-control"
+          onChange={this.onLabelChange}
+        />
         <button
-          type="button"
+          type="submit"
           className="btn btn-outline-secondary"
-          onClick={() => addItem('Hello world')}
         >
           Add
         </button>
-      </div>
+      </form>
     );
   }
 }
