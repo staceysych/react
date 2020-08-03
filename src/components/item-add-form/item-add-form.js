@@ -20,6 +20,9 @@ export default class ItemAddForm extends Component {
     const { addItem } = this.props;
     const { inputText } = this.state;
     addItem(inputText);
+    this.setState({
+      inputText: '',
+    });
   }
 
   render() {
@@ -33,6 +36,7 @@ export default class ItemAddForm extends Component {
           placeholder="add things to do"
           className="form-control"
           onChange={this.onLabelChange}
+          value={this.state.inputText}
         />
         <button
           type="submit"
