@@ -1,0 +1,22 @@
+.header {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.header a:hover {
+    text-decoration: none;
+}
+
+.header-menu {
+  list-style-type: none;
+}
+
+.header-menu li {
+  margin: 0;
+  padding: .5rem 1rem;
+
+  border-radius: 3px;
+  &:hover {
+    background-color: #444;
+  }
+}

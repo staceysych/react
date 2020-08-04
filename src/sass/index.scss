@@ -1,3 +1,4 @@
-.red-text {
-    color: red;
-}
+@import '../components/header/header.scss';
+@import '../components/random-planet/random-planes.scss';
+@import '../components/item-list/item-list.scss';
+@import '../components/person-details/person-details.scss';
