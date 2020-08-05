@@ -45,7 +45,7 @@ export default class SwapiService {
     return id;
   }
 
-  transformPlanet(planet) {
+  transformPlanet = (planet) => {
     return {
       id: this.extractId(planet),
       name: planet.name,
@@ -55,9 +55,9 @@ export default class SwapiService {
     };
   }
 
-  transformStarship(starship) {
+  transformStarship = (starship) => {
     return {
-      id: this._extractId(starship),
+      id: this.extractId(starship),
       name: starship.name,
       model: starship.model,
       manufacturer: starship.manufacturer,
@@ -69,9 +69,9 @@ export default class SwapiService {
     };
   }
 
-  transformPerson(person) {
+  transformPerson = (person) => {
     return {
-      id: this._extractId(person),
+      id: this.extractId(person),
       name: person.name,
       gender: person.gender,
       birthYear: person.birthYear,
