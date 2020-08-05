@@ -36,10 +36,10 @@ export default class SwapiService {
 
   async getStarShip(id) {
     const ships = await this.getResource(`starships/${id}/`);
-    return this.transformStarship(ship);
+    return this.transformStarship(ships);
   }
 
-  extractId(item) {
+  extractId = (item) => {
     const idRegEx = /\/([0-9]*)\/$/;
     const id = item.url.match(idRegEx)[1];
     return id;
